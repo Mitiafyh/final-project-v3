@@ -1,4 +1,4 @@
-<?php 
+<?php
 require("../includes/fonction.php");
 $liste = get_liste_objet();
 $liste_emprunt = liste_emprunte();
@@ -6,6 +6,7 @@ $etat = false;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,65 +78,65 @@ $etat = false;
     }
   </style>
 </head>
+
 <body>
-<header>
+  <header>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-   
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Emprunt</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="filtrer.php">Liste par categorie</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="liste_membre.php">Liste membre</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">se deconnecter</a>
-        </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-</header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
 
-<h1>Liste des objets</h1>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Emprunt</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="filtrer.php">Liste par categorie</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="liste_membre.php">Liste membre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.php">se deconnecter</a>
+            </li>
 
-<div class="container">
-  <?php foreach ($liste as $ls) { ?>
-    <div class="objet-card text-center">
-      <a href="historique.php?num=<?= $ls['id_objet'] ?>">
-      <?php if($ls['nom_image']==null){ ?>
-      <img src="../assets/image/5.jpeg" alt="" style="width:50px;">
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-      <?php } ?>
-      <img src="../assets/image/<?= $ls['nom_image'] ?>" alt="" style="width:50px;">
+  <h1>Liste des objets</h1>
+
+  <div class="container">
+    <?php foreach ($liste as $ls) { ?>
+      <div class="objet-card text-center">
+        <a href="historique.php?num=<?= $ls['id_objet'] ?>">
+          <?php if ($ls['nom_image'] == null) { ?>
+            <img src="../assets/image/5.jpeg" alt="" style="width:50px;">
+
+          <?php } ?>
+          <img src="../assets/image/<?= $ls['nom_image'] ?>" alt="" style="width:50px;">
 
 
-        <h5><?= $ls['nom_objet'] ?></h5>
-      </a>
-      <?php 
+          <h5><?= $ls['nom_objet'] ?></h5>
+        </a>
+        <?php
         $est_emprunte = false;
-        foreach ($liste_emprunt as $ls_e) { 
-          if ($ls['id_objet'] == $ls_e['id_objet']) {
-            echo '<p class="retour-date">Déjà emprunté — retour le ' . $ls_e['date_retour'] . '</p>';
-            $est_emprunte = true;
-            break;
-          }
+        foreach ($liste_emprunt as $ls_e) {
+          if ($ls['id_objet'] == $ls_e['id_objet']) { ?>
+            <p class="retour-date">Déjà emprunté (non disponible)— retour le <?= $ls_e['date_retour'] ?></p>
+            <?php $est_emprunte = true; ?>
+            <?php break ?>
+          <?php }
         }
         if (!$est_emprunte) { ?>
-          <button class="btn-emprunter">Emprunter</button>
-      <?php } ?>
-    </div>
-  <?php } ?>
-</div>
+        <a href="bouton.php?num=<?= $ls['id_objet'] ?>"><button class="btn-emprunter" type="submit">Emprunter</button></a>
+            
+        <?php } ?>
+      </div>
+    <?php } ?>
+  </div>
 </body>
+
 </html>
-
-
-

@@ -21,6 +21,13 @@ function liste_emprunte(){
     return $tab;
 }
 
+function get_date_retour($id){
+    $sql="SELECT date_retour FROM v_objet_emprunt WHERE id_objet=".$id;
+    $resultat = mysqli_query(bdd(), $sql);
+  $donnees = mysqli_fetch_assoc($resultat);
+    
+    return $donnees;
+}
 function liste_efa_niverina(){
     $sql="SELECT id_objet,date_retour FROM v_objet_emprunt WHERE date_retour<NOW() OR date_retour is null";
     $resultat = mysqli_query(bdd(), $sql);
