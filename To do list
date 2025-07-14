@@ -1,0 +1,23 @@
+(ok)    -creer base de donnees
+(ok)    -inserer les donnees de test
+    
+(ok)  -creer page login
+(ok)      -traitement:
+(ok)          -erreur si pas encore enregistre dans la base
+(ok)          -si deja, redirection vers accueil
+    
+(ok)    -creer page inscription
+(ok)        -creer fonction qui insere les donnees dans la base
+(ok)        -vers login apres l'inscription
+        
+    creer page emprunt(acceuil)
+(ok)        -afficher liste d'objet
+ (ok)       -date de retour si deja emprunte
+ (ok)       -si non bouton emprunt
+        
+ (ok)   creer page filtre par categorie
+    
+(ok) -ajouter lien sur objet dans la liste d'emprunt
+(ok) -creer view qui permet de rejoindre les tables necessaires pour l'historique
+(ok) -creer une fonction qui get historique de l'objet clique
+(ok) -afficher dans la page historique
